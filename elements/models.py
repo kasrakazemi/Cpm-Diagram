@@ -109,6 +109,7 @@ class NodesList(models.Model):
     type = models.ForeignKey(NodeTypes, default=1, blank=False, on_delete=models.CASCADE)
     node_position = models.JSONField(default=dict, blank=True)
     node_data = models.JSONField(default=dict, blank=True)
+    # field to related plan
     plan = models.ForeignKey(Plans, on_delete=models.CASCADE)
 
     class Meta:

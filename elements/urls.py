@@ -1,15 +1,18 @@
+################# Libs #################
 from django.urls import path,include
-from . import views
-from rest_framework.routers import SimpleRouter,DefaultRouter
-# URLConf
+from rest_framework.routers import DefaultRouter
+from .views import NodesListView,NodeTypeView, ActivityView, MilestoneView, RiskView, NoteView, EdgesListView
+########################################
+
 router = DefaultRouter()
-router.register('collections',views.CollectionViewset)
+router.register('nodetypes',NodeTypeView)
+router.register('nodeslist',NodesListView)
+router.register('activity',ActivityView)
+router.register('milestone',MilestoneView)
+router.register('risk',RiskView)
+router.register('note',NoteView)
+router.register('edges',EdgesListView)
 
 urlpatterns = [
-
-    path('product_list/', views.ProductList.as_view(),name='ssss'),
-    path('product_details/<int:id>/',views.Product_Details.as_view()),
     path('',include(router.urls))
-
 ]
-# urlpatterns = router.urls

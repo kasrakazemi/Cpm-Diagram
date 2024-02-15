@@ -15,14 +15,19 @@ class ProjectsView(ModelViewSet):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_permissions(self):
-        if self.request.method =='GET':
-            return [AllowAny()]
-        return [IsAuthenticated()]
+    # def get_permissions(self):
+    #     if self.request.method =='GET':
+    #         return [AllowAny()]
+    #     return [IsAuthenticated()]
 
 class PlansView(ModelViewSet):
     queryset = models.Plans.objects.all()
     serializer_class = PlansSerializer
     permission_classes = [IsAuthenticated]
+
+    # def get_permissions(self):
+    #     if self.request.method =='GET':
+    #         return [AllowAny()]
+    #     return [IsAuthenticated()]
 
     

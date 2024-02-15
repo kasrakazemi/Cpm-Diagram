@@ -12,6 +12,7 @@ urlpatterns = [
     path('core/', include('core.urls')),
     path('projects/', include('projects.urls')),
     path('accounts/', include('accounts.urls')),
+    path('elements/', include('elements.urls')),
     path('auth/', include('djoser.urls')),
      path('auth/', include('djoser.urls.jwt')),
 ]
