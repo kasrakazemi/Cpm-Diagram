@@ -8,6 +8,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     
 
+
 class Profile(models.Model):
     English = 'En'
     Spanish = 'Es'
@@ -30,4 +31,8 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
     
+
+class ProfileImage(models.Model):
+    profile = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name= 'images')
+    user_image = models.ImageField(upload_to= 'accounts/user_images')
     

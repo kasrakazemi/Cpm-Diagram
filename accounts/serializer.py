@@ -1,7 +1,7 @@
 ################# Libs #################
 from djoser.serializers import UserCreateSerializer as BaseCreateUserSerailizer
 from djoser.serializers import UserSerializer as BaseUserSerializer
-from .models import User,Profile
+from .models import User,Profile,ProfileImage
 from rest_framework import serializers
 ########################################
    
@@ -20,10 +20,21 @@ class UserSerializer(BaseUserSerializer):
 
 
 
+class ProfileImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfileImage
+        fields = ['profile', 'user_image']
+
+
+
 class ProfileSerializer(serializers.ModelSerializer):
-    user_id = serializers.IntegerField(read_only = True)
+    #user_id = serializers.IntegerField(read_only = True)
+    images = ProfileImageSerializer(many = True, read_only = True)
     class Meta:
         model = Profile
-        fields = ['id','name','birth_date','user_id','family_name','phone','language']
+        fields = ['id','name','birth_date','user','family_name','images','phone','language']
 
 
+
+
+        
