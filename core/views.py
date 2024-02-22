@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from .serializer import GeneralinfoSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from django.core.mail import mail_admins, send_mail, BadHeaderError, EmailMessage
 #######################################
 
 class GeneralinfoView(ModelViewSet):
@@ -21,3 +22,16 @@ class GeneralinfoView(ModelViewSet):
                 return [IsAuthenticated()]
 
         
+def SendEmail(request):
+        try:
+                message = EmailMessage('test subject', 'new messageeeeeeeeeee',
+                           'info@cpm.com', ['kasra@gmail.com'])
+                message.attach_file('core/static/images/test.jpg')
+                message.send()
+                # send_mail('test subject', 'new messageeeeeeeeeee',
+                #            'info@cpm.com', ['kasra@gmail.com'])
+        except BadHeaderError:
+                pass
+
+        return render(request, 'hello.html', {'name': 'Kasra'})
+

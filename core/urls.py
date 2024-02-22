@@ -8,5 +8,6 @@ router = DefaultRouter()
 router.register('generalinfo',views.GeneralinfoView)
 
 urlpatterns = [
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('send_email/', views.SendEmail)
 ]
