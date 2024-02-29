@@ -35,3 +35,4 @@ def SendEmail(request):
 
         return render(request, 'hello.html', {'name': 'Kasra'})
 
+
