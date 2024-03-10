@@ -21,9 +21,10 @@ class NodesAdmin(admin.ModelAdmin):
     list_editable = ['node_position', 'node_data']
     actions = ['clear_nodes_list']
    
-    @admin.action(description= 'Clear All Nodes')
+    @admin.action(description= 'Select One Node Then Delete All Nodes')
     def clear_nodes_list(self, request, queryset):
-        pass
+         delete_all_queryset = models.NodesList.objects.all()
+         delete_all_queryset.delete()
 
 @admin.register(models.EdgesList)
 class EdgesAdmin(admin.ModelAdmin):

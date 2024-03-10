@@ -15,6 +15,7 @@ class Projects(models.Model):
     def __str__(self):
         return self.project_name
 
+
 class Plans(models.Model):
 
     plan_name = models.CharField(max_length=150, blank=False)
@@ -26,3 +27,9 @@ class Plans(models.Model):
     # change default object names in admin pannel
     def __str__(self):
         return self.plan_name
+    
+
+
+
+
+

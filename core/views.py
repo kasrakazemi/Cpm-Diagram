@@ -3,7 +3,7 @@ from django.shortcuts import render
 from . import models
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from .serializer import GeneralinfoSerializer
@@ -27,12 +27,13 @@ def SendEmail(request):
                 message = EmailMessage('test subject', 'new messageeeeeeeeeee',
                            'info@cpm.com', ['kasra@gmail.com'])
                 message.attach_file('core/static/images/test.jpg')
+                message.attach
                 message.send()
                 # send_mail('test subject', 'new messageeeeeeeeeee',
                 #            'info@cpm.com', ['kasra@gmail.com'])
         except BadHeaderError:
                 pass
 
-        return render(request, 'hello.html', {'name': 'Kasra'})
-
+        #return render(request, 'hello.html', {'name': 'Kasra'})
+        return HttpResponse('email has been sent !')
 
