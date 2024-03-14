@@ -29,3 +29,7 @@ class WebUser(HttpUser):
             f'/core/generalinfo/3',
               name = '/core/generalinfo')
         
+    @task(20)
+    def test_performance(self):
+        self.client.get(f'/core/test_get/', name = '/core/test_get')
+

@@ -170,5 +170,20 @@ EMAIL_PORT = 2525
 
 
 # celery settings
-
 CELERY_BROKER_URL = 'redis://localhost:6379/1'
+
+
+
+# redis cache backend settings
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "TIMEOUT": 10*100,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+

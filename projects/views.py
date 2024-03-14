@@ -21,19 +21,19 @@ class ProjectsView(ModelViewSet):
     #         return [AllowAny()]
     #     return [IsAuthenticated()]
 
-    def list(self, request, *args, **kwargs):
+    def list(self):
         data = self.get_queryset()
         serializer = self.serializer_class(data, many= True)
         response_data = { "projects": serializer.data, "message": "all projects retrieved successfully"}
         return Response(response_data, status=status.HTTP_200_OK)
 
-    def retrieve(self, request, pk=None, *args, **kwargs):
+    def retrieve(self, request, pk=None):
         project = get_object_or_404(self.queryset, pk=pk)
         serializer = self.serializer_class(project)
         response_data = { "project": serializer.data,"message": "Project retrieved successfully"}
         return Response(response_data, status=status.HTTP_200_OK)
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -43,7 +43,7 @@ class ProjectsView(ModelViewSet):
             response_data = { "error": serializer.errors,"message": "Project creation  failed"}
             return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
 
-    def update(self, request, pk=None, *args, **kwargs):
+    def update(self, request, pk=None, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.serializer_class(instance, data=request.data, partial=partial)
@@ -55,7 +55,7 @@ class ProjectsView(ModelViewSet):
             response_data = { "error": serializer.errors,"message": "Project update  failed"}
             return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
 
-    def destroy(self, request, pk=None, *args, **kwargs):
+    def destroy(self, request, pk=None):
         instance = self.get_object()
         instance.delete()
         return Response({"message": "Project deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
@@ -95,7 +95,7 @@ class PlansView(ModelViewSet):
             response_data = { "error": serializer.errors,"message": "Plan creation  failed"}
             return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
 
-    def update(self, request, pk=None, *args, **kwargs):
+    def update(self, request, pk=None, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.serializer_class(instance, data=request.data, partial=partial)

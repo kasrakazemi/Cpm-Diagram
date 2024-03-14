@@ -9,7 +9,8 @@ router.register('generalinfo',views.GeneralinfoView)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('send_email/', views.SendEmail)
+    path('send_email/', views.SendEmail),
+    path('test_get/', views.TestCaching),
 ]
 
 
