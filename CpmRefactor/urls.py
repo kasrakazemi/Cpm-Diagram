@@ -16,7 +16,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('elements/', include('elements.urls')),
     path('auth/', include('djoser.urls')),
-     path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
 
 if settings.DEBUG :
